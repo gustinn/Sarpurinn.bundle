@@ -12,7 +12,7 @@
       </array>
       <key>TestURLs</key>
       <array>
-        <string>http://smooth.ruv.cache.is/</string>
+        <string>^http://smooth.ruv.cache.is/.+</string>
       </array>
     </dict>
   </dict>
