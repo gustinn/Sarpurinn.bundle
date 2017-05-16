@@ -25,7 +25,7 @@ VideoClipObject.art = R(ART)
 @handler(PREFIX, TITLE)
 def MainMenu():
 
-  thumb = ""
+#  thumb = ""
   oc = ObjectContainer()
   
   oc.add(VideoClipObject(
