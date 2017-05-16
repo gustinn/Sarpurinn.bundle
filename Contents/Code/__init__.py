@@ -29,7 +29,7 @@ def MainMenu():
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
   oc.add(VideoClipObject(
-    url = "https://pastebin.com/raw/upg1RfuJ"
+    url = "https://pastebin.com/raw/upg1RfuJ",
     # url = STREAM_URL + "/lokad/4897620R12.mp4",
     title = "Rembrandt",
     summary = "Skemmtilegt",
