@@ -14,7 +14,7 @@ def Start(): # Initialize the plug-in
 # Setup the default attributes for the ObjectContainer
   ObjectContainer.title1 = TITLE
   ObjectContainer.view_group = 'List'
-  ObjectContainer.art = R(ART)
+#  ObjectContainer.art = R(ART)
 
 # Setup the default attributes for the other objects
 #DirectoryObject.thumb = R(ICON)
