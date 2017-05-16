@@ -9,11 +9,10 @@
       <key>URLPatterns</key>
       <array>
         <string>http://smooth.ruv.cache.is/.+</string>
-		<string>http://ruv.is/sarpurinn/.+</string>
       </array>
       <key>TestURLs</key>
       <array>
-        <string>http://smooth.ruv.cache.is/</string>
+        <string>http://ruv.is/</string>
       </array>
     </dict>
   </dict>
