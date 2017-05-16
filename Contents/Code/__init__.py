@@ -28,6 +28,18 @@ def MainMenu():
 #  thumb = ""
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
+  oc = ObjectContainer()
+  oc.add(VideoClipObject(
+    url = STREAM_URL + "/lokad/4897620R12.mp4",
+    title = "Rembrandt",
+    summary = "Skemmtilegt",
+    thumb = R(ICON), #Callback(Thumb, url=thumb),
+    #duration = "3600",
+    #  originally_available_at = date
+    )
+  )
+  
+  
   
   return oc 
 
