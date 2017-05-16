@@ -31,7 +31,8 @@ def MediaObjectsForURL(url):
 def PlayMedia(url):
 	video_url = url
 	
-	return Redirect(url) #Redirect(STREAM_URL + video_url)
+	return  HTTP.Request(url).content 
+#Redirect(STREAM_URL + video_url)
 	
 # def NormalizeURL(url):
 	#remove pause url tag
