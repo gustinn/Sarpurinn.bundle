@@ -25,13 +25,14 @@ VideoClipObject.art = R(ART)
 @handler(PREFIX, TITLE)
 def MainMenu():
 
+  thumb = ""
   oc = ObjectContainer()
   
   oc.add(VideoClipObject(
   url = STREAM_URL + "lokad/4897620R12.mp4",
   title = "Live",
   summary = "Skemmtilegt",
-  thumb = Callback(Thumb, url=thumb),
+  thumb = R(ICON), #Callback(Thumb, url=thumb),
 #  duration = "",
 #  originally_available_at = date
   ))
