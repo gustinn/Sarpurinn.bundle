@@ -12,9 +12,5 @@
         <array>
             <string>UseRealRTMP</string>
         </array>
-        <key>PlexPluginTesterFlags</key>
-        <array>
-            <string>NoURLServices</string>
-        </array>
     </dict>
 </plist>
