@@ -39,7 +39,7 @@ def LiveMenu():
 		title = "Rembrandt",
 		summary = "Skemmtilegt",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		duration = "3600",
+		#duration = "3600",
 		#  originally_available_at = date
 		)
 	)
