@@ -2,7 +2,7 @@ TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
-STREAM_URL = 'http://smooth.ruv.cache.is/'
+STREAM_URL = 'http://smooth.ruv.cache.is'
 
 
 def Start(): # Initialize the plug-in
@@ -29,7 +29,7 @@ def MainMenu():
   oc = ObjectContainer()
   
   oc.add(VideoClipObject(
-  url = STREAM_URL + "lokad/4897620R12.mp4",
+  url = STREAM_URL + "/lokad/4897620R12.mp4",
   title = "Live",
   summary = "Skemmtilegt",
   thumb = R(ICON), #Callback(Thumb, url=thumb),
