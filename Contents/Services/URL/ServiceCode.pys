@@ -8,7 +8,7 @@ WEBSITE_URL = "http://ruv.is"
 
 def MetadataObjectForURL(url):
 	vc = VideoClipObject()
-	
+	Log(url)
 	vc.title = unicode("Gervi titill")
 	vc.summary = unicode("Tetta er summary")
 	vc.art= R(ART)
@@ -31,8 +31,9 @@ def MediaObjectsForURL(url):
 
 def PlayMedia(url):
 	video_url = url
-	
-	return  HTTP.Request(url).content 
+	Log(url)
+	return  Redirect(url)
+	#HTTP.Request(url).content 
 #Redirect(STREAM_URL + video_url)
 	
 # def NormalizeURL(url):
