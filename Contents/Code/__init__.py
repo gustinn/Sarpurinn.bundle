@@ -1,5 +1,5 @@
-TITLE    = 'Channel Title'
-PREFIX   = '/video/channelname'
+TITLE    = 'Sarpurinn'
+PREFIX   = '/video/sarpurinn'
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
 STREAM_URL = 'http://smooth.ruv.cache.is/'
