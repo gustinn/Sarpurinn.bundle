@@ -21,7 +21,7 @@ def MediaObjectsForURL(url):
 					audio_channels = 2,
 					container = Container.MP4,
 					optimized_for_streaming = True,
-					parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = url)))]
+					parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = url)))],
 					video_resolution = "sd"
 				)
 			]
