@@ -28,7 +28,7 @@ def MainMenu():
 
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
-  oc.add(CreateVideoClipObject(
+  oc.add(VideoClipObject(
     url = STREAM_URL + "/lokad/4897620R12.mp4",
     title = "Rembrandt",
     summary = "Skemmtilegt",
@@ -45,7 +45,7 @@ def MainMenu():
 @route(PREFIX, "/livemenu")
 def LiveMenu():
 	oc = ObjectContainer()
-	oc.add(CreateVideoClipObject(
+	oc.add(VideoClipObject(
 		url = STREAM_URL + "/lokad/4897620R12.mp4",
 		title = "Rembrandt",
 		summary = "Skemmtilegt",
