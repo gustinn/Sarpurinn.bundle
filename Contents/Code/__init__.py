@@ -31,7 +31,7 @@ def MainMenu():
   
   return oc 
 
-@route(PREFIX, "/livemenu", thumb = R(ICON))
+@route(PREFIX, "/livemenu")
 def LiveMenu():
 	oc = ObjectContainer()
 	oc.add(VideoClipObject(
