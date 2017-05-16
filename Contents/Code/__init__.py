@@ -26,7 +26,7 @@ def Start(): # Initialize the plug-in
 def MainMenu():
 
 #  thumb = ""
-  oc = ObjectContainer()
+  oc = ObjectContainer(thumb = R(ICON))
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
   
   return oc 
@@ -39,7 +39,7 @@ def LiveMenu():
 		title = "Rembrandt",
 		summary = "Skemmtilegt",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		#  duration = "",
+		duration = "10s",
 		#  originally_available_at = date
 		)
 	)
