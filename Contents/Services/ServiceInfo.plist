@@ -8,7 +8,7 @@
     <dict>
       <key>URLPatterns</key>
       <array>
-        <string>http://([^.]+.)?smooth.ruv.cache.is/.+</string>
+        <string>http://smooth.ruv.cache.is</string>
       </array>
       <key>TestURLs</key>
       <array>
