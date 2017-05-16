@@ -30,9 +30,9 @@ def MediaObjectsForURL(url):
 	
 
 def PlayMedia(url):
-	video_url = url
+	video_url = "/lokad/4897620R12.mp4"
 	Log(url)
-	return  Redirect(url)
+	return  Redirect(STREAM_URL + video_url)
 	#HTTP.Request(url).content 
 #Redirect(STREAM_URL + video_url)
 	
