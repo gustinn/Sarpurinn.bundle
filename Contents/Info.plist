@@ -6,7 +6,7 @@
         <!-- EXCEPT IF THE KEY HAS <array></array> CODE WITHIN IT.  THEN EACH VALUE FOR THAT KEY MUST BE ENTERED AS A SEPARATE STRING WITHIN THAT ARRAY -->    
         <key>CFBundleIdentifier</key>
             <!-- Unique PMS identifier for the plugin and its logs.  Format should always be com.plexapp.plugins.<nameofyourplugin> with no capital letters, spaces, or special characters -->
-            <string>com.plexapp.plugins.yourchannelname</string>
+            <string>com.plexapp.plugins.sarpurinn</string>
         <key>PlexFrameworkVersion</key>
             <!-- Version should always be set to 2 -->        
             <string>2</string>
@@ -27,7 +27,7 @@
             <array>
                 <!-- possible string values are the proper ISO two letter code for the country -->
                 <!-- A full list of values are available at http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 -->
-                <string></string>
+                <string>IS</string>
             </array>
         <!-- PLEX SERVER OPTIONAL KEYS -->
             <!-- You are less likely to need or use the PlexServerPlatforms, since all servers should be supported by a channel -->    
@@ -51,7 +51,7 @@
         <array>
                 <!-- possible values are 0 and 1 -->
                 <!-- Setting it to "1" rather than "0" turns on debug logging -->
-                <string></string>
+                <string>1</string>
         </array>
         <key>PlexPluginTesterFlags</key>
             <array>
@@ -69,10 +69,6 @@
         <!-- THESE BELOW ARE FOR AGENTS ONLY -->    
         <key>PlexPluginCodePolicy</key>
             <string>Elevated</string>
-        <key>PlexAgentAttributionText</key>
-            <string>
-                Text about the agent here
-            </string>
         <key>PlexPluginClass</key>
             <!-- This key is used to show that the plugin is an agent -->    
             <!-- possible values are agent -->    
