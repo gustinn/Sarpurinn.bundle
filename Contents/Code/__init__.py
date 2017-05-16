@@ -26,10 +26,8 @@ def Start(): # Initialize the plug-in
 @handler(PREFIX, TITLE)
 def MainMenu():
 
-#  thumb = ""
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
-  oc = ObjectContainer()
   oc.add(CreateVideoClipObject(
     url = STREAM_URL + "/lokad/4897620R12.mp4",
     title = "Rembrandt",
@@ -53,7 +51,7 @@ def LiveMenu():
 		summary = "Skemmtilegt",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		duration = 100000,
-		#  originally_available_at = date
+		#originally_available_at = date
 		)
 	)
   
