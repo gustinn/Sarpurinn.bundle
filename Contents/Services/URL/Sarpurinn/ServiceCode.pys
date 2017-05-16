@@ -19,9 +19,11 @@ def MediaObjectsForURL(url):
 					video_codec = VideoCodec.H264,
 					audio_codec = AudioCodec.AAC,
 					#audio_channels = 2,
+					#bitrate = int(2000),
 					container = Container.MP4,
-					optimized_for_streaming = False,
-					parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = url)))],
+					optimized_for_streaming = True,
+					parts = [PartObject(key = Callback(PlayVideo, url = url))],
+					#parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = url)))],
 					#video_resolution = "hd"
 				)
 			]
@@ -31,7 +33,8 @@ def PlayVideo(url):
 	#video_url = "/lokad/4897620R12.mp4"
 	#Log(url)
 	#return Redirect(url)
-	return HTTP.Request(url).content 
+	return IndirectResponse(VideoClipObject, key=url)
+	#HTTP.Request(url).content 
 #Redirect(STREAM_URL + video_url)
 
 # def NormalizeURL(url):
