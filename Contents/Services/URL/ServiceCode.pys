@@ -17,10 +17,10 @@ def MetadataObjectForURL(url):
 
 def MediaObjectsForURL(url):
 	return [MediaObject(
-					#protocol = 'hls',
+					protocol = 'hls',
 					video_codec = VideoCodec.H264,
 					audio_codec = AudioCodec.AAC,
-					#audio_channels = 2,
+					audio_channels = 2,
 					optimized_for_streaming = True,
 					parts = [PartObject(key = Callback(PlayMedia, url = url))]
 				)
@@ -28,7 +28,7 @@ def MediaObjectsForURL(url):
 			]
 	
 
-def PlayVideo(url):
+def PlayMedia(url):
 	video_url = url
 	
 	return Redirect(url) #Redirect(STREAM_URL + video_url)
