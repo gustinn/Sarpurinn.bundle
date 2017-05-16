@@ -26,12 +26,12 @@ def Start(): # Initialize the plug-in
 def MainMenu():
 
 #  thumb = ""
-  oc = ObjectContainer(thumb = R(ICON))
+  oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
   
   return oc 
 
-@route(PREFIX, "/livemenu")
+@route(PREFIX, "/livemenu", thumb = R(ICON))
 def LiveMenu():
 	oc = ObjectContainer()
 	oc.add(VideoClipObject(
