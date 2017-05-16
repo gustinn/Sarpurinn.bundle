@@ -35,7 +35,7 @@ def MainMenu():
     title = "Rembrandt",
     summary = "Skemmtilegt",
     thumb = R(ICON), #Callback(Thumb, url=thumb),
-    #duration = "3600",
+    duration = 60*60*1000,
     #  originally_available_at = date
     )
   )
