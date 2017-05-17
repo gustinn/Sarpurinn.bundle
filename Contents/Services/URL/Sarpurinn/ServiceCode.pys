@@ -15,10 +15,11 @@ def MetadataObjectForURL(url):
 
 def MediaObjectsForURL(url):
 	return [MediaObject(
-					protocol = 'hls',
+					#protocol = 'hls',
 					video_codec = VideoCodec.H264,
 					audio_codec = AudioCodec.AAC,
-					#audio_channels = 2,
+					video_resolution = "720",
+					audio_channels = 2,
 					#bitrate = int(2000),
 					container = Container.MP4,
 					optimized_for_streaming = True,
@@ -30,12 +31,9 @@ def MediaObjectsForURL(url):
 
 @indirect
 def PlayVideo(url):
-	#video_url = "/lokad/4897620R12.mp4"
-	#Log(url)
-	#return Redirect(url)
+	
 	return IndirectResponse(VideoClipObject, key=url)
 	#HTTP.Request(url).content 
-#Redirect(STREAM_URL + video_url)
 
 # def NormalizeURL(url):
 	#remove pause url tag
