@@ -30,9 +30,6 @@ def MainMenu():
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
   oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn"))
   
-  
-  
-  
   return oc 
 
 @route(PREFIX, "/livemenu")
@@ -47,6 +44,7 @@ def LiveMenu():
 		#originally_available_at = date
 		)
 	)
+	return oc
 @route(PREFIX, "/sarpmenu")
 def SarpMenu():
 	oc = ObjectContainer()
@@ -59,6 +57,7 @@ def SarpMenu():
 		#  originally_available_at = date
 		)
 	)
+	return oc
 	
   
 def Thumb(url):
