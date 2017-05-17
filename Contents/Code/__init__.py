@@ -28,16 +28,8 @@ def MainMenu():
 
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
-  oc.add(VideoClipObject(
-    #url = "https://pastebin.com/raw/upg1RfuJ",
-    url = STREAM_URL + "/lokad/4897620R12.mp4",
-    title = "Rembrandt",
-    summary = "Skemmtilegt",
-    thumb = R(ICON), #Callback(Thumb, url=thumb),
-    duration = 5*60*1000,
-    #  originally_available_at = date
-    )
-  )
+  oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn"))
+  
   
   
   
@@ -55,7 +47,19 @@ def LiveMenu():
 		#originally_available_at = date
 		)
 	)
-  
+@route(PREFIX, "/sarpmenu")
+def SarpMenu():
+	oc = ObjectContainer()
+	oc.add(VideoClipObject(
+		url = STREAM_URL + "/lokad/4897620R12.mp4",
+		title = "Rembrandt",
+		summary = "Skemmtilegt",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		duration = 5*60*1000,
+		#  originally_available_at = date
+		)
+	)
+	
   
 def Thumb(url):
 
