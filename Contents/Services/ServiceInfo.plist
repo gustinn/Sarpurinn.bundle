@@ -10,6 +10,8 @@
       <array>
         <string>http://smooth.ruv.cache.is/.+</string>
 		<string>http://(.+)?level3.net/.+</string>
+		<string>http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/stream5.m3u8</string>
+		<string>http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream4.m3u8</string>
       </array>
       <key>TestURLs</key>
       <array>
