@@ -32,6 +32,7 @@ def MainMenu():
   
   return oc 
 
+@route(PREFIX + '/createvideoclipobject', include_container = bool)
 def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False):
 	
 	video_object = VideoClipObject(
@@ -60,7 +61,8 @@ def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, medi
 		return ObjectContainer(objects = [video_object])
 	else:
 		return video_object
-	
+
+@route(PREFIX + '/playvideo.m3u8')
 def PlayVideo(url):
 	return IndirectResponse(VideoClipObject, key=url)
 	
