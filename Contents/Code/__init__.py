@@ -62,6 +62,7 @@ def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, medi
 	else:
 		return video_object
 
+@indirect
 @route(PREFIX + '/playvideo.m3u8')
 def PlayVideo(url):
 	return IndirectResponse(VideoClipObject, key=url)
@@ -77,6 +78,7 @@ def LiveMenu():
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
+		include_container=False
 		)
 	)
 	oc.add(CreateLiveObject(
@@ -87,6 +89,7 @@ def LiveMenu():
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
+		include_container=False
 		)
 	)
 	return oc
