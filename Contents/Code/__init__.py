@@ -52,10 +52,10 @@ def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, medi
 				#audio_channels = 2,
 				container = media_container, #Container.MP4,
 				optimized_for_streaming = True
-				)
-			]
-		)
+			)
+		]
 	)
+	
 	if include_container:
 		return ObjectContainer(objects = [video_object])
 	else:
