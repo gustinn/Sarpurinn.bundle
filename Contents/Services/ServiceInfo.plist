@@ -9,17 +9,7 @@
       <key>URLPatterns</key>
       <array>
         <string>http://smooth.ruv.cache.is/.+</string>
-      </array>
-      <key>TestURLs</key>
-      <array>
-        <string>http://ruv.is/</string>
-      </array>
-    </dict>
-	<key>LiveStream</key>
-    <dict>
-      <key>URLPatterns</key>
-      <array>
-        <string>(.+)?level3.net/.+</string>
+		<string>(.+)?level3.net/.+</string>
       </array>
       <key>TestURLs</key>
       <array>
