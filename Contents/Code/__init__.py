@@ -32,24 +32,59 @@ def MainMenu():
   
   return oc 
 
+def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False):
+	
+	video_object = VideoClipObject(
+		key = Callback(CreateLiveObject(url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, include_container = True),
+		rating_key = url, ### ???????
+		title = title,
+		summary = summary,
+		items = [
+			MediaObject(
+				parts = [
+					PartObject(
+						key = HTTPLiveStreamURL(Callback(PlayVideo, url = url))
+					)
+				],
+				video_codec = vidCodec, #VideoCodec.H264,
+				audio_codec = audCodec, #AudioCodec.AAC,
+				#video_resolution = "720",
+				#audio_channels = 2,
+				container = media_container, #Container.MP4,
+				optimized_for_streaming = True
+				)
+			]
+		)
+	)
+	if include_container:
+		return ObjectContainer(objects = [video_object])
+	else:
+		return video_object
+	
+def PlayVideo(url):
+	return IndirectResponse(VideoClipObject, key=url)
+	
 @route(PREFIX, "/livemenu")
 def LiveMenu():
 	oc = ObjectContainer()
-	oc.add(VideoClipObject(
+	oc.add(CreateLiveObject(
 		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream4.m3u8",
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
-		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
+		#thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
+		
+		
 		)
 	)
-	oc.add(VideoClipObject(
+	oc.add(CreateLiveObject(
 		url = "http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/stream5.m3u8",
 		title = "RÚV 2",
 		summary = "Bein útsending RÚV 2",
-		thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
+		#thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
 		)
 	)
 	return oc
+	
 @route(PREFIX, "/sarpmenu")
 def SarpMenu():
 	oc = ObjectContainer()
