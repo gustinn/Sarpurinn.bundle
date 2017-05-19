@@ -13,7 +13,7 @@ def Start(): # Initialize the plug-in
 
 # Setup the default attributes for the ObjectContainer
   ObjectContainer.title1 = TITLE
-  ObjectContainer.view_group = 'List'
+  ObjectContainer.view_group = 'Details'
 #  ObjectContainer.art = R(ART)
 
 # Setup the default attributes for the other objects
@@ -40,7 +40,7 @@ def LiveMenu():
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
 		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
-		#duration = 100000,
+		duration = 100000,
 		#originally_available_at = date
 		)
 	)
