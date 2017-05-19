@@ -33,7 +33,7 @@ def MainMenu():
   return oc 
 
 @route(PREFIX + '/createvideoclipobject', include_container = bool)
-def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False):
+def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
 		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, include_container = True),
