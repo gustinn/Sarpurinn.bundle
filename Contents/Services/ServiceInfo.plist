@@ -9,7 +9,7 @@
       <key>URLPatterns</key>
       <array>
         <string>http://smooth.ruv.cache.is/.+</string>
-		<string>(.+)?level3.net/.+</string>
+		<string>http://(.+)?level3.net/.+</string>
       </array>
       <key>TestURLs</key>
       <array>
