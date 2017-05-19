@@ -40,8 +40,13 @@ def LiveMenu():
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
 		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
-		duration = 100000,
-		#originally_available_at = date
+		)
+	)
+	oc.add(VideoClipObject(
+		url = "http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/stream5.m3u8",
+		title = "RÚV 2",
+		summary = "Bein útsending RÚV 2",
+		thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
 		)
 	)
 	return oc
