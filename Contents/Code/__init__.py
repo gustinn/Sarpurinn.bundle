@@ -36,11 +36,11 @@ def MainMenu():
 def LiveMenu():
 	oc = ObjectContainer()
 	oc.add(VideoClipObject(
-		url = STREAM_URL + "/lokad/4897620R12.mp4",
-		title = "Rembrandt",
-		summary = "Skemmtilegt",
-		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		duration = 100000,
+		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream4.m3u8",
+		title = "RÚV",
+		summary = "Bein útsending RÚV",
+		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
+		#duration = 100000,
 		#originally_available_at = date
 		)
 	)
