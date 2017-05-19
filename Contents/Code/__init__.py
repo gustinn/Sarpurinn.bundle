@@ -35,7 +35,7 @@ def MainMenu():
 def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateLiveObject(url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, include_container = True),
+		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
@@ -72,8 +72,9 @@ def LiveMenu():
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
 		#thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
-		
-		
+		vidCodec = VideoCodec.H264,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		)
 	)
 	oc.add(CreateLiveObject(
@@ -81,6 +82,9 @@ def LiveMenu():
 		title = "RÚV 2",
 		summary = "Bein útsending RÚV 2",
 		#thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
+		vidCodec = VideoCodec.H264,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		)
 	)
 	return oc
