@@ -149,10 +149,10 @@ def Schedule(dags):
 				entry['ep_total'] = ep.get('number-of-episodes')
 			if( int(entry['ep_total']) > 1 ):
 				# Append the episode number to the show title if it is a real multi-episode show
-				entry['title'] += " ("+entry['ep_num']+" af "+entry['ep_total']+")"
+				entry['title'] = entry['title'] + " ("+entry['ep_num']+" af "+entry['ep_total']+")"
 			else:
 				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
-				entry['title'] += " ("+sanitizeFileName(entry['showtime'][:16], "") +")"
+				entry['title'] = entry['title']+ " ("+sanitizeFileName(entry['showtime'][:16], "") +")"
 			
 		schedule[entry['pid']] = entry
 	return schedule
