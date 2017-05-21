@@ -100,6 +100,7 @@ def LiveMenu():
 def DaysMenu():
 	oc = ObjectContainer()
 	oc.add(DirectoryObject(key=Callback(SarpMenu), title="Í dag"))
+	return oc
 	
 	
 @route(PREFIX, "/sarpmenu")
