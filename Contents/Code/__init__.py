@@ -203,7 +203,7 @@ def SarpMenu(dags = None):
 			title = title,
 			summary = desc,
 			thumb = R(ICON),
-			duration = duartion,
+			duration = duration,
 			)
 		)
 	
