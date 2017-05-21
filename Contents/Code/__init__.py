@@ -33,7 +33,7 @@ def MainMenu():
   return oc 
 
 @route(PREFIX + '/createvideoclipobject', include_container = bool)
-def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, include_container=False, *args, **kwargs):
+def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
 		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, include_container = True),
@@ -49,8 +49,8 @@ def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, medi
 				],
 				video_codec = vidCodec, #VideoCodec.H264,
 				audio_codec = audCodec, #AudioCodec.AAC,
-				#video_resolution = "720",
-				#audio_channels = 2,
+				video_resolution = vidRes,
+				audio_channels = 2,
 				container = media_container, #Container.MP4,
 				optimized_for_streaming = True
 			)
@@ -78,6 +78,7 @@ def LiveMenu():
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
+		vidRes = "720",
 		include_container=False
 		)
 	)
@@ -89,6 +90,7 @@ def LiveMenu():
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
+		vidRes = "1080",
 		include_container=False
 		)
 	)
