@@ -120,8 +120,8 @@ def Schedule(dags):
 		print "Could not get schedule"
 	
 	for child in schedule_xml.iter("service"):
-		if (not child.tag == "service"):
-			continue
+		# if (not child.tag == "service"):
+		#	continue
 		
 		for entry_xml in child.iter('event'):
 			entry = {}
