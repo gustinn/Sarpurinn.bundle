@@ -116,9 +116,13 @@ def Schedule(dags):
 		return None
 	schedule_xml = ElementTree.fromstring(r.read())
 	
+	if (schedule_xml is None):
+		print "Could not get schedule"
+	
 	for child in schedule_xml:
 		if (not child.tag == "service"):
 			continue
+		
 		for entry_xml in child.iter('event'):
 			entry = {}
 			entry['title'] = entry_xml.find('title').text
