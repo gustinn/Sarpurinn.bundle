@@ -116,7 +116,7 @@ def Schedule(dags):
 	schedule_xml = ElementTree.fromstring(r.content)
 	
 	for child in schedule_xml:
-		if (not child.tag = "service"):
+		if (not child.tag == "service"):
 			continue
 		for entry_xml in child.iter('event'):
 			entry = {}
