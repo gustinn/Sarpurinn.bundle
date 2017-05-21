@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from xml.etree import ElementTree
-import requests
+import urllib2
 import json
 
 TITLE    = 'Sarpurinn'
@@ -109,11 +109,11 @@ def Schedule(dags):
 	schedule['date'] = datetime.date.today()
 	
 	url = "http://muninn.ruv.is/files/xml/ruv/" + dags + "/"
-	r = requests.get(url)
-	if (r.status_code != 200):
+	r = urllib.urlopen(url)
+	if (r.getcode() != 200):
 		print "Could not get schedule"
 		return None
-	schedule_xml = ElementTree.fromstring(r.content)
+	schedule_xml = ElementTree.fromstring(r.read())
 	
 	for child in schedule_xml:
 		if (not child.tag == "service"):
