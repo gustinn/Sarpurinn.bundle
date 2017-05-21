@@ -27,8 +27,8 @@ def Start(): # Initialize the plug-in
 def MainMenu():
 
   oc = ObjectContainer()
-  oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live"))
-  oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn"))
+  oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live", thumb = R(ICON)))
+  oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn", thumb = R(ICON)))
   
   return oc 
 
