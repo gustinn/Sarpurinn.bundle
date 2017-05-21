@@ -133,7 +133,7 @@ def Schedule(dags):
 			
 			details_basic = entry_xml.find('description')
 			if( not details_basic is None):
-				entry['desc'] = details_basic
+				entry['desc'] = details_basic.text
 			
 			entry_org_title = entry_xml.find('original-title')
 			if( not entry_org_title is None ):
@@ -189,11 +189,11 @@ def SarpMenu(dags = None):
 	oc.title2 = dags
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	
-	for schedule_item in schedule.items():
+	for key, schedule_item in schedule.items():
 		if (not "pid" in schedule_item):
 			continue
 		title = schedule_item['title']
-		date = datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M')
+		date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
 		desc = schedule_item["desc"]
 		duration = schedule_item["duration"]
 		pid = schedule_item["pid"]
