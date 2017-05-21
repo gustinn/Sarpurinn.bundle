@@ -111,11 +111,11 @@ def DaysMenu():
 	
 	for d in range(1,SARP_STOR_DAYS+1):
 		dagur = datetime.date.today() - datetime.timedelta(days=d)
-		oc.add(DirectoryObject(key=Callback(Day, dags = dagur), title=dagur))
+		oc.add(DirectoryObject(key=Callback(Day, dags = str(dagur)), title=str(dagur)))
 	return oc
 	
 @route(PREFIX, "/day")
-def Day(dags, *args, **kwargs):
+def Day(dags):
 	oc = ObjectContainer()
 	oc.title2 = dags
 	
