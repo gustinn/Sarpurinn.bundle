@@ -36,7 +36,7 @@ def MainMenu():
 def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container = True),
+		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
