@@ -145,8 +145,8 @@ def Schedule(dags):
 			
 			ep = entry_xml.find('episode')
 			if( not ep is None ):
-			entry['ep_num'] = ep.get('number')
-			entry['ep_total'] = ep.get('number-of-episodes')
+				entry['ep_num'] = ep.get('number')
+				entry['ep_total'] = ep.get('number-of-episodes')
 			if( int(entry['ep_total']) > 1 ):
 				# Append the episode number to the show title if it is a real multi-episode show
 				entry['title'] += " ("+entry['ep_num']+" af "+entry['ep_total']+")"
