@@ -181,12 +181,32 @@ def SarpMenu(dags = None):
 		other = unicode("Aðrir dagar")
 	else:
 		dags = str(datetime.date.today())
+	
+	# get schedule
 	schedule = Schedule(dags)
-	
-	
+		
 	oc = ObjectContainer()
 	oc.title2 = dags
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
+	
+	for schedule_item in schedule.items():
+		if (not "pid" in schedule_item):
+			continue
+		title = schedule_item['title']
+		date = datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M')
+		desc = schedule_item["desc"]
+		duration = schedule_item["duration"]
+		pid = schedule_item["pid"]
+		
+		oc.add(VideoClipObject(
+			url = STREAM_URL + "/" + pid,
+			title = title,
+			summary = desc,
+			thumb = R(ICON),
+			duration = duartion,
+			)
+		)
+	
 	oc.add(VideoClipObject(
 		url = STREAM_URL + "/lokad/4897620R12.mp4",
 		title = "Rembrandt",
