@@ -193,7 +193,7 @@ def SarpMenu(dags = None):
 		if (not 'pid' in schedule_item):
 			continue
 		title = schedule_item['title']
-		show_date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
+		show_date = datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
 		desc = schedule_item["desc"]
 		duration = schedule_item["duration"]
 		pid = schedule_item["pid"]
