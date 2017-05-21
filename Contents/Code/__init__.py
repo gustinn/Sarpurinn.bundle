@@ -14,7 +14,7 @@ def Start(): # Initialize the plug-in
 # Setup the default attributes for the ObjectContainer
   ObjectContainer.title1 = TITLE
   ObjectContainer.view_group = 'Details'
-#  ObjectContainer.art = R(ART)
+  ObjectContainer.art = R(ART)
 
 # Setup the default attributes for the other objects
 #DirectoryObject.thumb = R(ICON)
@@ -33,13 +33,14 @@ def MainMenu():
   return oc 
 
 @route(PREFIX + '/createvideoclipobject', include_container = bool)
-def CreateLiveObject(url, title, summary, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
+def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
+		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
+		thumb = thumb,
 		items = [
 			MediaObject(
 				parts = [
@@ -74,7 +75,7 @@ def LiveMenu():
 		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream4.m3u8",
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
-		#thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
+		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
@@ -86,7 +87,7 @@ def LiveMenu():
 		url = "http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/stream5.m3u8",
 		title = "RÚV 2",
 		summary = "Bein útsending RÚV 2",
-		#thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
+		thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
