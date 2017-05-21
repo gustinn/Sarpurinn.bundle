@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
-import ElementTree
+from xml.etree import ElementTree
 import requests
 import json
 
