@@ -123,7 +123,7 @@ def Schedule(dags):
 		if (not child.tag == "service"):
 			continue
 		
-		for entry in child.iter('event'):
+		for entry_xml in schedule_xml.iter('event'):
 			entry = {}
 			entry['title'] = entry_xml.find('title').text
 			entry['pid'] = entry_xml.get('event-id')
