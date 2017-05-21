@@ -25,7 +25,6 @@ def Start(): # Initialize the plug-in
 #####################################################################
 @handler(PREFIX, TITLE)
 def MainMenu():
-
   oc = ObjectContainer()
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live", thumb = R(ICON)))
   oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn", thumb = R(ICON)))
@@ -97,9 +96,16 @@ def LiveMenu():
 	)
 	return oc
 	
+@route(PREFIX, "/days")
+def DaysMenu():
+	oc = ObjectContainer()
+	oc.add(DirectoryObject(key=Callback(SarpMenu), title="Í dag"))
+	
+	
 @route(PREFIX, "/sarpmenu")
 def SarpMenu():
 	oc = ObjectContainer()
+	oc.add(DirectoryObject(key=Callback(DaysMenu), title="Fyrri dagar", thumb = R(ICON)))
 	oc.add(VideoClipObject(
 		url = STREAM_URL + "/lokad/4897620R12.mp4",
 		title = "Rembrandt",
@@ -109,6 +115,7 @@ def SarpMenu():
 		#  originally_available_at = date
 		)
 	)
+	
 	return oc
 
 
