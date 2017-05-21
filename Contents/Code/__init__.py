@@ -100,7 +100,7 @@ def LiveMenu():
 	return oc
 	
 @route(PREFIX, "/schedule")
-def Schedule(day):
+def Schedule(dags):
 	
 	return None
 	
@@ -111,20 +111,22 @@ def DaysMenu():
 	
 	for d in range(1,SARP_STOR_DAYS+1):
 		dagur = datetime.date.today() - datetime.timedelta(days=d)
-		oc.add(DirectoryObject(key=Callback(Day, dags = str(dagur)), title=str(dagur)))
+		oc.add(DirectoryObject(key=Callback(SarpMenu, dags = str(dagur)), title=str(dagur)))
 	return oc
 	
-@route(PREFIX, "/day")
-def Day(dags):
+@route(PREFIX, "/sarpmenu")
+def SarpMenu(dags = None):
+	other = "Fyrri dagar"
+	if dags is not None:
+		other = "Aðrir dagar"
+	else:
+		dags = str(datetime.date.today())
+	schedule = Schedule(dags)
+	
+	
 	oc = ObjectContainer()
 	oc.title2 = dags
-	
-	return oc
-
-@route(PREFIX, "/sarpmenu")
-def SarpMenu():
-	oc = ObjectContainer()
-	oc.add(DirectoryObject(key=Callback(DaysMenu), title="Fyrri dagar", thumb = R(ICON)))
+	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	oc.add(VideoClipObject(
 		url = STREAM_URL + "/lokad/4897620R12.mp4",
 		title = "Rembrandt",
