@@ -107,7 +107,7 @@ def LiveMenu():
 @route(PREFIX, "/schedule")
 def Schedule(dags):
 	schedule = {}
-	schedule['date'] = datetime.date.today()
+	#schedule['date'] = datetime.date.today()
 	
 	url = "http://muninn.ruv.is/files/xml/ruv/" + dags + "/"
 	r = urllib.urlopen(url)
