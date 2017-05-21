@@ -112,7 +112,6 @@ def DaysMenu():
 	for d in range(1,SARP_STOR_DAYS+1):
 		dagur = datetime.date.today() - datetime.timedelta(days=d)
 		oc.add(DirectoryObject(key=Callback(Day, day = dagur), title=dagur)
-		
 	return oc
 	
 @route(PREFIX, "/day")
