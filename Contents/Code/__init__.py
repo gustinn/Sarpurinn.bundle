@@ -190,7 +190,7 @@ def SarpMenu(dags = None):
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	
 	for key, schedule_item in schedule.items():
-		if (not "pid" in schedule_item):
+		if (not 'pid' in schedule_item):
 			continue
 		title = schedule_item['title']
 		date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
