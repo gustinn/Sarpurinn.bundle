@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 import datetime
+import ElementTree
+import requests
+import json
 
 TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
@@ -101,12 +105,63 @@ def LiveMenu():
 	
 @route(PREFIX, "/schedule")
 def Schedule(dags):
+	schedule = {}
+	schedule['date'] = datetime.date.today()
 	
-	return None
+	url = "http://muninn.ruv.is/files/xml/ruv/" + dags + "/"
+	r = requests.get(url)
+	if (r.status_code != 200):
+		print "Could not get schedule"
+		return None
+	schedule_xml = ElementTree.fromstring(r.content)
+	
+	for child in schedule_xml:
+		if (not child.tag = "service"):
+			continue
+		for entry_xml in child.iter('event'):
+			entry = {}
+			entry['title'] = entry_xml.find('title').text
+			entry['pid'] = entry_xml.get('event-id')
+			entry['showtime'] = entry_xml.get('start-time')
+			entry['duration'] = entry_xml.get('duration')
+			entry['sid'] = entry_xml.get('serie-id')
+			
+			details_basic = entry_xml.find('description')
+			if( not details_basic is None):
+				entry['desc'] = entry_details
+			
+			entry_org_title = entry_xml.find('original-title')
+			if( not entry_org_title is None ):
+				entry['original-title'] = entry_org_title.text
+			
+			# If the series id is nothing then it is not a show (e.g. dagskrárlok)
+			if( not entry['sid'] ):
+				continue
+			
+			cat = entry_xml.find('category')
+			if(  not cat is None  ):
+				entry['catid'] = cat.get('value')
+				entry['cat'] = cat.text
+			
+			ep = entry_xml.find('episode')
+			if( not ep is None ):
+			entry['ep_num'] = ep.get('number')
+			entry['ep_total'] = ep.get('number-of-episodes')
+			if( int(entry['ep_total']) > 1 ):
+				# Append the episode number to the show title if it is a real multi-episode show
+				entry['title'] += " ("+entry['ep_num']+" af "+entry['ep_total']+")"
+			else:
+				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
+				entry['title'] += " ("+sanitizeFileName(entry['showtime'][:16], "") +")"
+			
+		schedule[entry['pid']] = entry
+	return schedule
 	
 @route(PREFIX, "/daysmenu")
 def DaysMenu():
 	oc = ObjectContainer()
+	oc.title1 = TITLE
+	oc.title2 = unicode("Veldu dag")
 	oc.add(DirectoryObject(key=Callback(SarpMenu), title= unicode("Í dag")))
 	
 	for d in range(1,SARP_STOR_DAYS+1):
@@ -118,7 +173,7 @@ def DaysMenu():
 def SarpMenu(dags = None):
 	other = "Fyrri dagar"
 	if dags is not None:
-		other = "Aðrir dagar"
+		other = unicode("Aðrir dagar")
 	else:
 		dags = str(datetime.date.today())
 	schedule = Schedule(dags)
