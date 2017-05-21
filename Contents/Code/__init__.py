@@ -115,7 +115,7 @@ def DaysMenu():
 	return oc
 	
 @route(PREFIX, "/day")
-def Day(day):
+def Day(day, *args, **kwargs):
 	oc = ObjectContainer()
 	oc.title2 = day
 	
