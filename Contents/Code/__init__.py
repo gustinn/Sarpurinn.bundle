@@ -133,7 +133,7 @@ def Schedule(dags):
 			
 			details_basic = entry_xml.find('description')
 			if( not details_basic is None):
-				entry['desc'] = entry_details
+				entry['desc'] = details_basic
 			
 			entry_org_title = entry_xml.find('original-title')
 			if( not entry_org_title is None ):
