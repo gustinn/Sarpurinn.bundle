@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from xml.etree import ElementTree
-import urllib2
+import urllib
 import json
 
 TITLE    = 'Sarpurinn'
@@ -103,6 +103,7 @@ def LiveMenu():
 	)
 	return oc
 	
+# Get the TV schedule for specified day
 @route(PREFIX, "/schedule")
 def Schedule(dags):
 	schedule = {}
