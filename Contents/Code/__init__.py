@@ -1,9 +1,12 @@
+import datetime
+
 TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
 STREAM_URL = 'http://smooth.ruv.cache.is'
 INFO_URL = "http://ruv.is/sarpurinn"
+SARP_STOR_DAYS = 31
 
 
 def Start(): # Initialize the plug-in
@@ -96,13 +99,29 @@ def LiveMenu():
 	)
 	return oc
 	
+@route(PREFIX, "/schedule")
+def Schedule(day):
+	
+	return None
+	
 @route(PREFIX, "/daysmenu")
 def DaysMenu():
 	oc = ObjectContainer()
 	oc.add(DirectoryObject(key=Callback(SarpMenu), title= unicode("Í dag")))
+	
+	for d in range(1,SARP_STOR_DAYS+1):
+		dagur = datetime.date.today() - datetime.timedelta(days=d)
+		oc.add(DirectoryObject(key=Callback(Day, day = dagur), title=dagur)
+		
 	return oc
 	
+@route(PREFIX, "/day")
+def Day(day):
+	oc = ObjectContainer()
+	oc.title2 = day
 	
+	return oc
+
 @route(PREFIX, "/sarpmenu")
 def SarpMenu():
 	oc = ObjectContainer()
