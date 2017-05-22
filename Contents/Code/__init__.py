@@ -198,7 +198,7 @@ def SarpMenu(dags = None):
 	oc = ObjectContainer()
 	oc.title2 = dags
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
-	
+	Log(len(schedule.items()))
 	for key, schedule_item in schedule.items():
 		#if (not 'pid' in schedule_item):
 		#	continue
