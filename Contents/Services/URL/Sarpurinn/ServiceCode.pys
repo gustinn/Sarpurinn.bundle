@@ -41,6 +41,7 @@ def PlayVideo(url):
 			break
 	if (vid_url == ""):
 		print "Not found on server"
+		return None
 	
 	return IndirectResponse(VideoClipObject, key=vid_url)
 	#HTTP.Request(url).content 
