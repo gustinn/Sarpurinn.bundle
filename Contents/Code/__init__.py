@@ -116,7 +116,7 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 			MediaObject(
 				parts = [
 					PartObject(
-						key = HTTPLiveStreamURL(Callback(PlaySarpVideo, url = url))
+						key = (Callback(PlaySarpVideo, url = url)
 					)
 				],
 				video_codec = vidCodec, #VideoCodec.H264,
