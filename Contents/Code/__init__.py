@@ -167,7 +167,7 @@ def GetSchedule(dags):
 				entry['title'] = entry['title'] + " ("+entry['ep_num']+" af "+entry['ep_total']+")"
 			else:
 				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
-				entry['title'] = entry['title']+ " ("+entry['showtime'][:16], "" +")"
+				entry['title'] = str(entry['title'])+ " (" + entry['showtime'][:16] + ")"
 			
 			schedule[entry['pid']] = entry
 	return schedule
