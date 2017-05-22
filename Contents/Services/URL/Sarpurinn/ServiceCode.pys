@@ -16,16 +16,6 @@ WEBSITE_URL = "http://ruv.is"
 #	)
 
 def MediaObjectsForURL(url):
-	vid_url = ""
-	for nr in range(30):
-		url_test = url + "R" + str(nr) + ".mp4"
-		if (urllib.urlopen(url_test).getcode() == 200):
-			vid_url = url_test
-			break
-	if (vid_url == ""):
-		print "Not found on server"
-	
-	
 	return [MediaObject(
 					#protocol = 'hls',
 					video_codec = VideoCodec.H264,
@@ -36,15 +26,23 @@ def MediaObjectsForURL(url):
 					container = Container.MP4,
 					optimized_for_streaming = True,
 					#parts = [PartObject(key = Callback(PlayVideo, url = vid_url))],
-					parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = vid_url)))],
+					parts = [PartObject(key = HTTPLiveStreamURL(Callback(PlayVideo, url = url)))],
 					#video_resolution = "hd"
 				)
 			]
 
 @indirect
 def PlayVideo(url):
+	vid_url = ""
+	for nr in range(30):
+		url_test = url + "R" + str(nr) + ".mp4"
+		if (urllib.urlopen(url_test).getcode() == 200):
+			vid_url = url_test
+			break
+	if (vid_url == ""):
+		print "Not found on server"
 	
-	return IndirectResponse(VideoClipObject, key=url)
+	return IndirectResponse(VideoClipObject, key=vid_url)
 	#HTTP.Request(url).content 
 
 # def NormalizeURL(url):
