@@ -38,7 +38,7 @@ def MainMenu():
   
   return oc 
 
-@route(PREFIX + '/createvideoclipobject', include_container = bool)
+@route(PREFIX + '/createliveobject', include_container = bool)
 def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
@@ -102,7 +102,46 @@ def LiveMenu():
 		)
 	)
 	return oc
+
+@route(PREFIX + '/createvideoobject', include_container = bool)
+def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
+	video_object = VideoClipObject(
+		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
+		rating_key = url, ### ???????
+		title = title,
+		summary = summary,
+		thumb = thumb,
+		items = [
+			MediaObject(
+				parts = [
+					PartObject(
+						key = HTTPLiveStreamURL(Callback(PlaySarpVideo, url = url))
+					)
+				],
+				video_codec = vidCodec, #VideoCodec.H264,
+				audio_codec = audCodec, #AudioCodec.AAC,
+				video_resolution = vidRes,
+				audio_channels = 2,
+				container = media_container, #Container.MP4,
+				optimized_for_streaming = True
+			)
+		]
+	)
+	
+	if include_container:
+		return ObjectContainer(objects = [video_object])
+	else:
+		return video_object
+
+@indirect
+@route(PREFIX + '/playsarpvideo')
+def PlayVideoSarp(url):
+	vid_url = url
+	
+	Log(vid_url)
+	return IndirectResponse(VideoClipObject, key=vid_url)
+
 # Get the TV schedule for specified day
 @route(PREFIX, "/getschedule")
 def GetSchedule(dags):
@@ -211,24 +250,30 @@ def SarpMenu(dags = None):
 		Log(pid)
 		if (schedule_item['isl']):
 			preUrl = "lokad/"
-		oc.add(VideoClipObject(
+		
+		oc.add(CreateVideoObject(
 			url = STREAM_URL + preUrl + pid,
 			title = titill,
 			summary = desc,
-			thumb = R(ICON),
-			#duration = duration, # needs to be int
+			thumb = R(ICON), #Callback(Thumb, url=thumb),
+			vidCodec = VideoCodec.H264,
+			audCodec = AudioCodec.AAC,
+			media_container = Container.MP4,
+			vidRes = "720",
+			include_container=False
 			)
 		)
+		
 	
-	oc.add(VideoClipObject(
-		url = STREAM_URL + "lokad/4897620",
-		title = "Rembrandt",
-		summary = "Skemmtilegt",
-		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		duration = 5*60*1000,
-		#  originally_available_at = date
-		)
-	)
+	# oc.add(VideoClipObject(
+		# url = STREAM_URL + "lokad/4897620",
+		# title = "Rembrandt",
+		# summary = "Skemmtilegt",
+		# thumb = R(ICON), #Callback(Thumb, url=thumb),
+		# duration = 5*60*1000,
+		# #  originally_available_at = date
+		# )
+	# )
 	
 	return oc
 
