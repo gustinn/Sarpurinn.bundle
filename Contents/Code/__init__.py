@@ -8,7 +8,7 @@ TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
-STREAM_URL = 'http://smooth.ruv.cache.is'
+STREAM_URL = 'http://smooth.ruv.cache.is/'
 INFO_URL = "http://ruv.is/sarpurinn"
 SARP_STOR_DAYS = 31
 
@@ -131,6 +131,15 @@ def Schedule(dags):
 			entry['duration'] = entry_xml.get('duration')
 			entry['sid'] = entry_xml.get('serie-id')
 			
+			# find if iceland only
+			isl = entry_xml.get('mark')
+			if (isl == "yes"):	
+				entry['isl'] = True
+			elif( isl == "no"):
+				entry['isl'] = False
+			else: 
+				entry['isl'] = None
+			
 			details_basic = entry_xml.find('description')
 			if( not details_basic is None):
 				entry['desc'] = details_basic.text
@@ -192,14 +201,16 @@ def SarpMenu(dags = None):
 	for key, schedule_item in schedule.items():
 		if (not 'pid' in schedule_item):
 			continue
-		title = schedule_item['title']
-		date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
+		titill = schedule_item['title']
+		#date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
 		desc = schedule_item["desc"]
-		duration = schedule_item["duration"]
+		#duration = schedule_item["duration"]
 		pid = schedule_item["pid"]
-		
+		preUrl = "opid/"
+		if (schedule_item['isl']):
+			preUrl = "lokad/"
 		oc.add(VideoClipObject(
-			url = STREAM_URL + "/" + pid,
+			url = STREAM_URL + preUrl + pid,
 			title = title,
 			summary = desc,
 			thumb = R(ICON),
