@@ -211,7 +211,7 @@ def SarpMenu(dags = None):
 			preUrl = "lokad/"
 		oc.add(VideoClipObject(
 			url = STREAM_URL + preUrl + pid,
-			title = title,
+			title = titill,
 			summary = desc,
 			thumb = R(ICON),
 			#duration = duration, # needs to be int
