@@ -169,7 +169,7 @@ def GetSchedule(dags):
 				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
 				entry['title'] = entry['title']+ " ("+entry['showtime'][:16], "" +")"
 			
-		schedule[entry['pid']] = entry
+			schedule[entry['pid']] = entry
 	return schedule
 	
 @route(PREFIX, "/daysmenu")
