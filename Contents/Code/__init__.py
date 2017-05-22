@@ -197,7 +197,6 @@ def SarpMenu(dags = None):
 		
 	oc = ObjectContainer()
 	oc.title2 = dags
-	Log(dags)
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	
 	for key, schedule_item in schedule.items():
@@ -209,6 +208,7 @@ def SarpMenu(dags = None):
 		#duration = schedule_item["duration"]
 		pid = schedule_item["pid"]
 		preUrl = "opid/"
+		Log(pid)
 		if (schedule_item['isl']):
 			preUrl = "lokad/"
 		oc.add(VideoClipObject(
