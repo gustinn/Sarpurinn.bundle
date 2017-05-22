@@ -51,7 +51,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 			MediaObject(
 				parts = [
 					PartObject(
-						key = HTTPLiveStreamURL(Callback(PlayVideo, url = url))
+						key = HTTPLiveStreamURL(Callback(PlayVideoLive, url = url))
 					)
 				],
 				video_codec = vidCodec, #VideoCodec.H264,
@@ -70,8 +70,8 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		return video_object
 
 @indirect
-@route(PREFIX + '/playvideo.m3u8')
-def PlayVideo(url):
+@route(PREFIX + '/playvideolive.m3u8')
+def PlayVideoLive(url):
 	return IndirectResponse(VideoClipObject, key=url)
 	
 @route(PREFIX, "/livemenu")
