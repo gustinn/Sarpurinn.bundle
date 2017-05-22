@@ -123,7 +123,7 @@ def GetSchedule(dags):
 	for child in schedule_xml.iter("service"):
 		# if (not child.tag == "service"):
 		#	continue
-		
+		Log(child)
 		for entry_xml in child.iter('event'):
 			entry = {}
 			entry['title'] = entry_xml.find('title').text
@@ -200,8 +200,8 @@ def SarpMenu(dags = None):
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	Log(len(schedule.items()))
 	for key, schedule_item in schedule.items():
-		#if (not 'pid' in schedule_item):
-		#	continue
+		if (not 'pid' in schedule_item):
+			continue
 		titill = schedule_item['title']
 		#date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
 		desc = schedule_item["desc"]
