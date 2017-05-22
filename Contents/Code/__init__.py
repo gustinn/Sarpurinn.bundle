@@ -136,7 +136,7 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 
 @indirect
 @route(PREFIX + '/playsarpvideo')
-def PlayVideoSarp(url):
+def PlaySarpVideo(url):
 	vid_url = url
 	
 	Log(vid_url)
