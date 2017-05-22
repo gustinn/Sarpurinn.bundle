@@ -137,7 +137,16 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 @indirect
 @route(PREFIX + '/playsarpvideo')
 def PlaySarpVideo(url):
-	vid_url = url
+	vid_url = ""
+	for nr in range(30):
+		url_test = url + "R" + str(nr) + ".mp4"
+		Log("URL TEST: "+url_test)
+		if (urllib.urlopen(url_test).getcode() == 200):
+			vid_url = url_test
+			break
+	if (vid_url == ""):
+		Log("Not found on server")
+		return None
 	
 	Log(vid_url)
 	return IndirectResponse(VideoClipObject, key=vid_url)
@@ -162,7 +171,7 @@ def GetSchedule(dags):
 	for child in schedule_xml.iter("service"):
 		# if (not child.tag == "service"):
 		#	continue
-		Log(child)
+		#Log(child)
 		for entry_xml in child.iter('event'):
 			entry = {}
 			entry['title'] = entry_xml.find('title').text
