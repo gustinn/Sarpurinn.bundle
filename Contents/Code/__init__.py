@@ -219,7 +219,7 @@ def SarpMenu(dags = None):
 		)
 	
 	oc.add(VideoClipObject(
-		url = STREAM_URL + "/lokad/4897620R12.mp4",
+		url = STREAM_URL + "lokad/4897620R12.mp4",
 		title = "Rembrandt",
 		summary = "Skemmtilegt",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
