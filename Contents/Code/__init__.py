@@ -107,7 +107,7 @@ def LiveMenu():
 def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateLiveObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
+		key = Callback(CreateVideoObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
