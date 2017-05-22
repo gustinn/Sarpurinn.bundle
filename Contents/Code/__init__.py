@@ -104,8 +104,8 @@ def LiveMenu():
 	return oc
 	
 # Get the TV schedule for specified day
-@route(PREFIX, "/schedule")
-def Schedule(dags):
+@route(PREFIX, "/getschedule")
+def GetSchedule(dags):
 	schedule = {}
 	#schedule['date'] = datetime.date.today()
 	
@@ -118,6 +118,7 @@ def Schedule(dags):
 	
 	if (schedule_xml is None):
 		print "Could not get schedule"
+		return None
 	
 	for child in schedule_xml.iter("service"):
 		# if (not child.tag == "service"):
@@ -192,10 +193,11 @@ def SarpMenu(dags = None):
 		dags = str(datetime.date.today())
 	
 	# get schedule
-	schedule = Schedule(dags)
+	schedule = GetSchedule(dags)
 		
 	oc = ObjectContainer()
 	oc.title2 = dags
+	Log(dags)
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	
 	for key, schedule_item in schedule.items():
