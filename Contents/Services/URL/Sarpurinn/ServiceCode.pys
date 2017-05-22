@@ -37,6 +37,7 @@ def PlayVideo(url):
 	vid_url = ""
 	for nr in range(30):
 		url_test = url + "R" + str(nr) + ".mp4"
+		Log("URL TEST: "+url_test)
 		if (urllib.urlopen(url_test).getcode() == 200):
 			vid_url = url_test
 			break
