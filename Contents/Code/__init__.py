@@ -194,7 +194,7 @@ def SarpMenu(dags = None):
 	
 	# get schedule
 	schedule = GetSchedule(dags)
-	schedule = sorted(schedule, key=itemgetter('showtime'), reverse=True)
+	#schedule = sorted(schedule, key=itemgetter('showtime'), reverse=True)
 	oc = ObjectContainer()
 	oc.title2 = dags
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
