@@ -148,7 +148,7 @@ def PlaySarpVideo(url):
 		Log("Not found on server")
 		return None
 	
-	Log(vid_url)
+	Log("Final url: " + vid_url)
 	return IndirectResponse(VideoClipObject, key=vid_url)
 
 # Get the TV schedule for specified day
@@ -268,7 +268,7 @@ def SarpMenu(dags = None):
 			vidCodec = VideoCodec.H264,
 			audCodec = AudioCodec.AAC,
 			media_container = Container.MP4,
-			vidRes = "720",
+			vidRes = "576",
 			include_container=False
 			)
 		)
