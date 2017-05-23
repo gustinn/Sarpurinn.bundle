@@ -20,7 +20,7 @@ def Start(): # Initialize the plug-in
 
 # Setup the default attributes for the ObjectContainer
   ObjectContainer.title1 = TITLE
-  ObjectContainer.view_group = 'Details'
+  ObjectContainer.view_group = 'List'
   ObjectContainer.art = R(ART)
 
 # Setup the default attributes for the other objects
@@ -104,10 +104,10 @@ def LiveMenu():
 	return oc
 
 @route(PREFIX + '/createvideoobject', include_container = bool)
-def CreateVideoObject(url, title, summary, pid, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
+def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateVideoObject, url = url, title = title, summary = summary, pid = pid, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
+		key = Callback(CreateVideoObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
@@ -116,7 +116,7 @@ def CreateVideoObject(url, title, summary, pid, thumb = None, vidCodec = None, a
 			MediaObject(
 				parts = [
 					PartObject(
-						key = Callback(PlaySarpVideo, url = url, pid = pid)
+						key = Callback(PlaySarpVideo, url = url)
 					)
 				],
 				video_codec = vidCodec, #VideoCodec.H264,
@@ -136,21 +136,13 @@ def CreateVideoObject(url, title, summary, pid, thumb = None, vidCodec = None, a
 
 @indirect
 @route(PREFIX + '/playsarpvideo')
-def PlaySarpVideo(url,pid):
+def PlaySarpVideo(url):
 	URLS = [
 		'opid/{0}R{1}.mp4',
 		'lokad/{0}R{1}.mp4',
 		'lokad/{0}M{1}.mp4'
 	]
 	vid_url = ""
-	# if ("lokad" in url):
-		# for nr in range(30):
-			# url_test = url + pid + "R" + str(nr) + ".mp4"
-			# Log("URL TEST: "+url_test)
-			# if (urllib.urlopen(url_test).getcode() == 200):
-				# vid_url = url_test
-				# break
-	# else:
 	for url_ending in URLS:
 		for nr in range(30):
 			url_test = STREAM_URL + url_ending.format(url, nr)
@@ -271,14 +263,11 @@ def SarpMenu(dags = None):
 		item_pid = schedule_item["pid"]
 		# preUrl = ""
 		Log(item_pid)
-		# if (schedule_item['isl']):
-			# preUrl = "lokad/"
-		
+				
 		oc.add(CreateVideoObject(
 			url = item_pid,
 			title = titill,
 			summary = desc,
-			pid = item_pid,
 			thumb = R(ICON), #Callback(Thumb, url=thumb),
 			vidCodec = VideoCodec.H264,
 			audCodec = AudioCodec.AAC,
