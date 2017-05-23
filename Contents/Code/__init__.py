@@ -104,10 +104,10 @@ def LiveMenu():
 	return oc
 
 @route(PREFIX + '/createvideoobject', include_container = bool)
-def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
+def CreateVideoObject(url, title, summary, pid, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
-		key = Callback(CreateVideoObject, url = url, title = title, summary = summary, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
+		key = Callback(CreateVideoObject, url = url, title = title, summary = summary, pid = pid, thumb = thumb, vidCodec = vidCodec, audCodec = audCodec, media_container = media_container, vidRes = vidRes, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
 		summary = summary,
@@ -116,7 +116,7 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 			MediaObject(
 				parts = [
 					PartObject(
-						key = Callback(PlaySarpVideo, url = url)
+						key = Callback(PlaySarpVideo, url = url, pid = pid)
 					)
 				],
 				video_codec = vidCodec, #VideoCodec.H264,
@@ -136,14 +136,29 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 
 @indirect
 @route(PREFIX + '/playsarpvideo')
-def PlaySarpVideo(url):
+def PlaySarpVideo(url,pid):
+	URLS = [
+		'opid/{0}R{1}.mp4',
+		'lokad/{0}R{1}.mp4',
+		'lokad/{0}M{1}.mp4'
+	]
 	vid_url = ""
-	for nr in range(30):
-		url_test = url + "R" + str(nr) + ".mp4"
-		Log("URL TEST: "+url_test)
-		if (urllib.urlopen(url_test).getcode() == 200):
-			vid_url = url_test
-			break
+	if ("lokad" in url):
+		for nr in range(30):
+			url_test = url + pid + "R" + str(nr) + ".mp4"
+			Log("URL TEST: "+url_test)
+			if (urllib.urlopen(url_test).getcode() == 200):
+				vid_url = url_test
+				break
+	else:
+		for url_ending in URLS:
+			for nr in range(30):
+				url_test = STREAM_URL + url_ending.format(pid, nr)
+				Log("URL TEST: "+url_test)
+				if (urllib.urlopen(url_test).getcode() == 200):
+					vid_url = url_test
+					break
+	
 	if (vid_url == ""):
 		Log("Not found on server")
 		return None
@@ -180,15 +195,13 @@ def GetSchedule(dags):
 			entry['duration'] = entry_xml.get('duration')
 			entry['sid'] = entry_xml.get('serie-id')
 			
-			# find if iceland only
+			# if marked then definitely "/lokad/"
 			isl = entry_xml.get('mark')
 			if (isl == "yes"):	
 				entry['isl'] = True
 			elif( isl == "no"):
 				entry['isl'] = False
-			else: 
-				entry['isl'] = None
-			
+						
 			details_basic = entry_xml.find('description')
 			if( not details_basic is None):
 				entry['desc'] = details_basic.text
@@ -254,16 +267,17 @@ def SarpMenu(dags = None):
 		#date = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
 		desc = schedule_item["desc"]
 		#duration = schedule_item["duration"]
-		pid = schedule_item["pid"]
-		preUrl = "opid/"
+		item_pid = schedule_item["pid"]
+		preUrl = ""
 		Log(pid)
 		if (schedule_item['isl']):
 			preUrl = "lokad/"
 		
 		oc.add(CreateVideoObject(
-			url = STREAM_URL + preUrl + pid,
+			url = STREAM_URL + preUrl,
 			title = titill,
 			summary = desc,
+			pid = item_pid,
 			thumb = R(ICON), #Callback(Thumb, url=thumb),
 			vidCodec = VideoCodec.H264,
 			audCodec = AudioCodec.AAC,
