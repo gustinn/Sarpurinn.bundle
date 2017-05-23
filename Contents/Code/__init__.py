@@ -138,8 +138,8 @@ def CreateVideoObject(url, title, summary, thumb = None, vidCodec = None, audCod
 @route(PREFIX + '/playsarpvideo')
 def PlaySarpVideo(url):
 	URLS = [
-		'opid/{0}R{1}.mp4',
 		'lokad/{0}R{1}.mp4',
+		'opid/{0}R{1}.mp4',
 		'lokad/{0}M{1}.mp4'
 	]
 	vid_url = ""
