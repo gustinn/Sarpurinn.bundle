@@ -269,7 +269,7 @@ def SarpMenu(dags = None):
 		#duration = schedule_item["duration"]
 		item_pid = schedule_item["pid"]
 		preUrl = ""
-		Log(pid)
+		Log(item_pid)
 		if (schedule_item['isl']):
 			preUrl = "lokad/"
 		
