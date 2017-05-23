@@ -224,7 +224,7 @@ def GetSchedule(dags):
 				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
 				entry['title'] = str(entry['title'])+ " (" + entry['showtime'][:16] + ")"
 			if (entry['rerun'] == "yes"):
-				entry['title'] += " (RERUN)"
+				entry['title'] = str(entry['title']) + " (RERUN)"
 			schedule[entry['pid']] = entry
 	return schedule
 	
