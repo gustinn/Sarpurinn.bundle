@@ -183,6 +183,7 @@ def GetSchedule(dags):
 		for entry_xml in child.iter('event'):
 			entry = {}
 			entry['title'] = entry_xml.find('title').text
+			entry['rerun'] = entry_xml.find('rerun').text
 			entry['pid'] = entry_xml.get('event-id')
 			entry['showtime'] = entry_xml.get('start-time')
 			entry['duration'] = entry_xml.get('duration')
@@ -222,7 +223,8 @@ def GetSchedule(dags):
 			else:
 				# If it isn't a multi episode show then append the date to the title (to avoid overwriting files)
 				entry['title'] = str(entry['title'])+ " (" + entry['showtime'][:16] + ")"
-			
+			if (entry['rerun'] == "yes"):
+				entry['title'] += " (RERUN)"
 			schedule[entry['pid']] = entry
 	return schedule
 	
