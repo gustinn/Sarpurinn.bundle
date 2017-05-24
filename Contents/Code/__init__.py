@@ -225,7 +225,8 @@ def GetSchedule(dags):
 				entry['title'] = str(entry['title'])+ " (" + entry['showtime'][:16] + ")"
 			if (entry['rerun'] == "yes"):
 				entry['title'] = str(entry['title']) + " (RERUN)"
-			schedule[entry['pid']] = entry
+			#schedule[entry['pid']] = entry
+			schedule[str(entry['showtime'])] = entry
 	return schedule
 	
 @route(PREFIX, "/daysmenu")
