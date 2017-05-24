@@ -260,7 +260,7 @@ def SarpMenu(dags = None):
 			continue
 		titill = schedule_item['title']
 		showtime = datetime.datetime.strptime(schedule_item['showtime'], '%Y-%m-%d %H:%M:%S')
-		titill = showtime.strftime("%Y-%m-%d %H:%M - ") + titill 
+		titill = showtime.strftime("%H:%M - ") + titill
 		desc = schedule_item["desc"]
 		#duration = schedule_item["duration"]
 		item_pid = schedule_item["pid"]
