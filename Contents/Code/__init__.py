@@ -256,7 +256,7 @@ def SarpMenu(dags = None):
 	oc.title2 = dags
 	oc.add(DirectoryObject(key=Callback(DaysMenu), title=other, thumb = R(ICON)))
 	Log(len(schedule.items()))
-	for key, schedule_item in schedule.items():
+	for key, schedule_item in sorted(schedule.items()): # sorted by air time
 		if (not 'pid' in schedule_item):
 			continue
 		titill = schedule_item['title']
