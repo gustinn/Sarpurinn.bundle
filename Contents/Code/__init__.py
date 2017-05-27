@@ -80,7 +80,6 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		title = title,
 		thumb = thumb,
 	)
-	if 
 	
 	track_object.add(
 		MediaObject(
