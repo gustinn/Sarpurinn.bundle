@@ -78,20 +78,22 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		rating_key = title, ### ???????
 		title = title,
 		thumb = thumb,
-		items = [
-			MediaObject(
-				parts = [
-					PartObject(
-						key = Callback(PlayAudio, url = url)
-					)
-				],
-				audio_codec = audCodec, #AudioCodec.AAC,
-				container = media_container, #Container.MP4,
-				audio_channels = channels,
-				bitrate = bit
-			)
-		]
 	)
+	
+	track_object.add(
+		MediaObject(
+			parts = [
+				PartObject(
+					key = Callback(PlayMP3, url = url)
+				)
+			],
+			audio_codec = audCodec, #AudioCodec.AAC,
+			container = media_container, #Container.MP4,
+			audio_channels = channels,
+			bitrate = bit
+		)
+	)
+	
 	
 	if include_container:
 		return ObjectContainer(objects = [track_object])
@@ -99,7 +101,14 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-@route(PREFIX + '/PlayAudio')
+@route(PREFIX + '/PlayAAC.aac')
+def PlayAAC(url):
+	return PlayAudio(url)
+
+@route(PREFIX + '/PlayMP3.mp3')
+def PlayMP3(url):
+	return PlayAudio(url)
+
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
