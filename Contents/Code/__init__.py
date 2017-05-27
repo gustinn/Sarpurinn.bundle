@@ -72,10 +72,10 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 
 		
 @route(PREFIX_AUDIO + '/createliveradioobject', include_container = bool)
-def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, include_container=False, *args, **kwargs):
+def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, bit = None, include_container=False, *args, **kwargs):
 	
 	track_object = TrackObject(
-		key = Callback(CreateLiveRadioObject, url = url, title = title, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
+		key = Callback(CreateLiveRadioObject, url = url, title = title, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, bit = bit,  include_container = True),
 		rating_key = title, ### ???????
 		title = title,
 		thumb = thumb,
@@ -87,10 +87,9 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 					)
 				],
 				audio_codec = audCodec, #AudioCodec.AAC,
-				audio_channels = channels,
 				container = media_container, #Container.MP4,
-				bitrate = 128
-				#optimized_for_streaming = True
+				audio_channels = channels,
+				bitrate = bit
 			)
 		]
 	)
@@ -165,9 +164,10 @@ def LiveMenu():
 		title = "KissFM",
 		#summary = "Bein útsending á KissFM",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		#audCodec = AudioCodec.MP3,
-		media_container = "mpegts",
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
 		channels = 2,
+		bitrate = 112,
 		include_container=False
 		)
 	)
