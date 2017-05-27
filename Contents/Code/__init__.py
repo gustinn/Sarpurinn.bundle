@@ -98,7 +98,7 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 	if include_container:
 		return ObjectContainer(objects = [track_object])
 	else:
-		return video_object
+		return track_object
 
 @indirect
 @route(PREFIX_AUDIO + '/playradiolive')
