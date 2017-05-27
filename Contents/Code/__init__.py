@@ -73,7 +73,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		
 @route(PREFIX_AUDIO + '/createliveradioobject', include_container = bool)
 def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, include_container=False, *args, **kwargs):
-	
+	fmt = "aac"
 	track_object = TrackObject(
 		key = Callback(CreateLiveRadioObject, url = url, title = title, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
 		rating_key = url, ### ???????
@@ -83,7 +83,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 			MediaObject(
 				parts = [
 					PartObject(
-						key = Callback(PlayAudio, url = url)
+						key = Callback(PlayAudio, url = url, ext = fmt)
 					)
 				],
 				audio_codec = audCodec, #AudioCodec.AAC,
