@@ -90,7 +90,7 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 				audio_codec = audCodec, #AudioCodec.AAC,
 				audio_channels = channels,
 				container = media_container, #Container.MP4,
-				optimized_for_streaming = True
+				#optimized_for_streaming = True
 			)
 		]
 	)
@@ -143,10 +143,34 @@ def LiveMenu():
 		summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
+		channels = 2,
 		#media_container = Container.MP4,
 		include_container=False
 		)
 	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://wms-1.visir.is/radio/orbBylgjan/playlist.m3u8",
+		title = "Bylgjan",
+		summary = "Bein útsending á Bylgjunni",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		#audCodec = AudioCodec.AAC,
+		channels = 2,
+		#media_container = Container.MP4,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://stream.radio.is:443/kiss",
+		title = "KissFM",
+		summary = "Bein útsending á KissFM",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		#audCodec = AudioCodec.AAC,
+		channels = 2,
+		#media_container = Container.MP4,
+		include_container=False
+		)
+	)
+	
 	return oc
 
 @route(PREFIX + '/createvideoobject', include_container = bool)
