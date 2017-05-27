@@ -39,7 +39,7 @@ def MainMenu():
   
   return oc 
 
-@route(PREFIX + '/createliveobject', include_container = bool)
+@route(PREFIX + '/Createliveobject', include_container = bool)
 def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCodec = None, media_container = None, vidRes = None, include_container=False, *args, **kwargs):
 	
 	video_object = VideoClipObject(
@@ -71,7 +71,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		return video_object
 
 		
-@route(PREFIX_AUDIO + '/createliveradioobject', include_container = bool)
+@route(PREFIX_AUDIO + '/CreateLiveRadioObject', include_container = bool)
 def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, bit = None, include_container=False, *args, **kwargs):
 	
 	track_object = TrackObject(
@@ -101,7 +101,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-@route(PREFIX_AUDIO + '/playaudio')
+@route(PREFIX_AUDIO + '/PlayAudio.m3u8')
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
