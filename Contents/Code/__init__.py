@@ -84,8 +84,7 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 			MediaObject(
 				parts = [
 					PartObject(
-						#key = Callback(PlayRadioLive, url = url)
-						key = url
+						key = Callback(PlayAudio, url = url)
 					)
 				],
 				audio_codec = audCodec, #AudioCodec.AAC,
@@ -102,9 +101,9 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 		return track_object
 
 @indirect
-@route(PREFIX_AUDIO + '/playradiolive')
-def PlayRadioLive(url):
-	return IndirectResponse(TrackObject, key=url)
+@route(PREFIX_AUDIO + '/playaudio')
+def PlayAudio(url):
+	return Redirect(url)
 	
 @indirect
 @route(PREFIX + '/playvideolive.m3u8')
