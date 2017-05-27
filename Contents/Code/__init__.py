@@ -100,7 +100,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 	else:
 		return track_object
 
-@indirect
+
 @route(PREFIX_AUDIO + '/playaudio')
 def PlayAudio(url):
 	Log(url)
