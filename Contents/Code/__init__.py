@@ -80,11 +80,13 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		title = title,
 		thumb = thumb,
 	)
+	if 
+	
 	track_object.add(
 		MediaObject(
 			parts = [
 				PartObject(
-					key = Callback(PlayAudio, url = url)
+					key = Callback(PlayAAC, url = url)
 				)
 			],
 			audio_codec = audCodec, #AudioCodec.AAC,
@@ -101,7 +103,14 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-@route(PREFIX_AUDIO + '/PlayAudio.m3u8')
+@route(PREFIX_AUDIO + '/PlayAAC.aac')
+def PlayAAC(url):
+	return PlayAudio(url)
+
+@route(PREFIX_AUDIO + '/PlayMP3.mp3')
+def PlayMP3(url):
+	return PlayAudio(url)
+
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
@@ -156,7 +165,7 @@ def LiveMenu():
 		#summary = "Bein útsending á Bylgjunni",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = "mpegts",#Container.MP4,
+		media_container = "mp4",#Container.MP4,
 		channels = 2,
 		bit = 128,
 		include_container=False
