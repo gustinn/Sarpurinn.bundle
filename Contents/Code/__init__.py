@@ -71,7 +71,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		return video_object
 
 		
-@route(PREFIX_AUDIO + '/CreateLiveRadioObject', include_container = bool)
+@route(PREFIX + '/CreateLiveRadioObject', include_container = bool)
 def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, bit = None, include_container=False, *args, **kwargs):
 	Log("Radio URL: "+url)
 	track_object = TrackObject(
@@ -102,11 +102,11 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-@route(PREFIX_AUDIO + '/PlayAAC.aac')
+@route(PREFIX + '/PlayAAC.aac')
 def PlayAAC(url):
 	return PlayAudio(url)
 
-@route(PREFIX_AUDIO + '/PlayMP3.mp3')
+@route(PREFIX + '/PlayMP3.mp3')
 def PlayMP3(url):
 	return PlayAudio(url)
 
