@@ -79,20 +79,21 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		rating_key = title, ### ???????
 		title = title,
 		thumb = thumb,
-		items = [
-			MediaObject(
-				parts = [
-					PartObject(
-						key = Callback(PlayAudio, url = url)
-					)
-				],
-				audio_codec = audCodec, #AudioCodec.AAC,
-				container = media_container, #Container.MP4,
-				audio_channels = channels,
-				bitrate = bit
-			)
-		]
 	)
+	track_object.add(
+		MediaObject(
+			parts = [
+				PartObject(
+					key = Callback(PlayAudio, url = url)
+				)
+			],
+			audio_codec = audCodec, #AudioCodec.AAC,
+			container = media_container, #Container.MP4,
+			audio_channels = channels,
+			bitrate = bit
+		)
+	)
+	
 	
 	if include_container:
 		return ObjectContainer(objects = [track_object])
@@ -145,6 +146,7 @@ def LiveMenu():
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
 		channels = 2,
+		bit = 128,
 		include_container=False
 		)
 	)
@@ -156,6 +158,7 @@ def LiveMenu():
 		audCodec = AudioCodec.AAC,
 		media_container = "mpegts",#Container.MP4,
 		channels = 2,
+		bit = 128,
 		include_container=False
 		)
 	)
@@ -167,7 +170,7 @@ def LiveMenu():
 		audCodec = AudioCodec.MP3,
 		media_container = Container.MP3,
 		channels = 2,
-		bitrate = 112,
+		bit = 112,
 		include_container=False
 		)
 	)
