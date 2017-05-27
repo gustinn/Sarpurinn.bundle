@@ -85,7 +85,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		MediaObject(
 			parts = [
 				PartObject(
-					key = Callback(PlayAAC, url = url)
+					key = Callback(PlayMP3, url = url)
 				)
 			],
 			audio_codec = audCodec, #AudioCodec.AAC,
@@ -154,7 +154,7 @@ def LiveMenu():
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
 		channels = 2,
-		bit = 128,
+		#bit = 128,
 		include_container=False
 		)
 	)
@@ -178,7 +178,7 @@ def LiveMenu():
 		audCodec = AudioCodec.MP3,
 		media_container = Container.MP3,
 		channels = 2,
-		bit = 112,
+		#bit = 112,
 		include_container=False
 		)
 	)
