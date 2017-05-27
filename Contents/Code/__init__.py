@@ -33,7 +33,7 @@ def Start(): # Initialize the plug-in
 #####################################################################
 @handler(PREFIX, TITLE)
 def MainMenu():
-  oc = ObjectContainer()
+  oc = ObjectContainer(no_cache = True)
   oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live", thumb = R(ICON)))
   oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn", thumb = R(ICON)))
   
@@ -76,7 +76,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 	
 	track_object = TrackObject(
 		key = Callback(CreateLiveRadioObject, url = url, title = title, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
-		rating_key = url, ### ???????
+		rating_key = title, ### ???????
 		title = title,
 		thumb = thumb,
 		items = [
@@ -89,6 +89,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 				audio_codec = audCodec, #AudioCodec.AAC,
 				audio_channels = channels,
 				container = media_container, #Container.MP4,
+				bitrate = 128
 				#optimized_for_streaming = True
 			)
 		]
@@ -143,7 +144,7 @@ def LiveMenu():
 		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = "mpegts", #Container.MP4,
+		media_container = Container.MP4,
 		channels = 2,
 		include_container=False
 		)
