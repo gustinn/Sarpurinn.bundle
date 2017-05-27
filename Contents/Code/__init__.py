@@ -6,6 +6,7 @@ import json
 
 TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
+PREFIX_AUDIO = "/music/sarpurinn"
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
 STREAM_URL = 'http://smooth.ruv.cache.is/'
@@ -69,6 +70,41 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 	else:
 		return video_object
 
+		
+@route(PREFIX_AUDIO + '/createliveradioobject', include_container = bool)
+def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, media_container = None, channels = None, include_container=False, *args, **kwargs):
+	
+	track_object = TrackObject(
+		key = Callback(CreateLiveRadioObject, url = url, title = title, summary = summary, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
+		rating_key = url, ### ???????
+		title = title,
+		summary = summary,
+		thumb = thumb,
+		items = [
+			MediaObject(
+				parts = [
+					PartObject(
+						key = HTTPLiveStreamURL(Callback(PlayRadioLive, url = url))
+					)
+				],
+				audio_codec = audCodec, #AudioCodec.AAC,
+				audio_channels = channels,
+				container = media_container, #Container.MP4,
+				optimized_for_streaming = True
+			)
+		]
+	)
+	
+	if include_container:
+		return ObjectContainer(objects = [track_object])
+	else:
+		return video_object
+
+@indirect
+@route(PREFIX_AUDIO + '/playradiolive')
+def PlayRadioLive(url):
+	return IndirectResponse(TrackObject, key=url)
+	
 @indirect
 @route(PREFIX + '/playvideolive.m3u8')
 def PlayVideoLive(url):
@@ -98,6 +134,16 @@ def LiveMenu():
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
 		vidRes = "1080",
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live.m3u8",
+		title = "Rás 1",
+		summary = "Bein útsending Rás 1",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.AAC,
+		#media_container = Container.MP4,
 		include_container=False
 		)
 	)
