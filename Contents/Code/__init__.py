@@ -6,7 +6,6 @@ import json
 
 TITLE    = 'Sarpurinn'
 PREFIX   = '/video/sarpurinn'
-PREFIX_AUDIO = "/music/sarpurinn"
 ART      = 'art-default.jpg'
 ICON     = 'icon-default.png'
 STREAM_URL = 'http://smooth.ruv.cache.is/'
@@ -102,14 +101,7 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-@route(PREFIX + '/PlayAAC.aac')
-def PlayAAC(url):
-	return PlayAudio(url)
-
-@route(PREFIX + '/PlayMP3.mp3')
-def PlayMP3(url):
-	return PlayAudio(url)
-
+@route(PREFIX + '/PlayAudio')
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
