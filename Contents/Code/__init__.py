@@ -72,13 +72,12 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 
 		
 @route(PREFIX_AUDIO + '/createliveradioobject', include_container = bool)
-def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, media_container = None, channels = None, include_container=False, *args, **kwargs):
+def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_container = None, channels = None, include_container=False, *args, **kwargs):
 	
 	track_object = TrackObject(
-		key = Callback(CreateLiveRadioObject, url = url, title = title, summary = summary, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
+		key = Callback(CreateLiveRadioObject, url = url, title = title, thumb = thumb, audCodec = audCodec, media_container = media_container, channels = channels, include_container = True),
 		rating_key = url, ### ???????
 		title = title,
-		summary = summary,
 		thumb = thumb,
 		items = [
 			MediaObject(
@@ -103,6 +102,7 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 @indirect
 @route(PREFIX_AUDIO + '/playaudio')
 def PlayAudio(url):
+	Log(url)
 	return Redirect(url)
 	
 @indirect
@@ -140,7 +140,7 @@ def LiveMenu():
 	oc.add(CreateLiveRadioObject(
 		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live/stream1.m3u8",
 		title = "Rás 1",
-		summary = "Bein útsending Rás 1",
+		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
@@ -151,22 +151,22 @@ def LiveMenu():
 	oc.add(CreateLiveRadioObject(
 		url = "http://wms-1.visir.is/radio/orbBylgjan/playlist.m3u8",
 		title = "Bylgjan",
-		summary = "Bein útsending á Bylgjunni",
+		#summary = "Bein útsending á Bylgjunni",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		#audCodec = AudioCodec.AAC,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
-		#media_container = Container.MP4,
 		include_container=False
 		)
 	)
 	oc.add(CreateLiveRadioObject(
 		url = "http://stream.radio.is:443/kiss",
 		title = "KissFM",
-		summary = "Bein útsending á KissFM",
+		#summary = "Bein útsending á KissFM",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		#audCodec = AudioCodec.AAC,
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
 		channels = 2,
-		#media_container = Container.MP4,
 		include_container=False
 		)
 	)
