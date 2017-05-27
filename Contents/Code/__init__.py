@@ -84,7 +84,8 @@ def CreateLiveRadioObject(url, title, summary, thumb = None, audCodec = None, me
 			MediaObject(
 				parts = [
 					PartObject(
-						key = Callback(PlayRadioLive, url = url)
+						#key = Callback(PlayRadioLive, url = url)
+						key = url
 					)
 				],
 				audio_codec = audCodec, #AudioCodec.AAC,
@@ -138,13 +139,13 @@ def LiveMenu():
 		)
 	)
 	oc.add(CreateLiveRadioObject(
-		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live.m3u8",
+		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live/stream1.m3u8",
 		title = "Rás 1",
 		summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
-		#media_container = Container.MP4,
 		include_container=False
 		)
 	)
