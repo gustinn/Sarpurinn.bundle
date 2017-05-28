@@ -161,7 +161,7 @@ def LiveMenu():
 		)
 	)
 	oc.add(CreateLiveRadioObject(
-		url = "http://www.radioparadise.com/musiclinks/rp_128aac.m3u",
+		url = "http://stream-eu1.radioparadise.com:80/aac-128",
 		#url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live/stream1.m3u8",
 		title = "Rás 1",
 		#summary = "Bein útsending Rás 1",
