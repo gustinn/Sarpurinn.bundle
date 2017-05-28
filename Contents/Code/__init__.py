@@ -82,29 +82,29 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 	if (media_container == "mp4"):
 		track_object.add(
 			MediaObject(
+				audio_codec = AudioCodec.AAC,
+				container = Container.MP4,
+				audio_channels = channels,
+				bitrate = bit,
 				parts = [
 					PartObject(
 						key = Callback(PlayAAC, url = url)
 					)
-				],
-				audio_codec = AudioCodec.AAC,
-				container = Container.MP4,
-				audio_channels = channels,
-				bitrate = bit
+				]
 			)
 		)
 	else:
 		track_object.add(
 			MediaObject(
-				parts = [
-					PartObject(
-						key = Callback(PlayAudio, url = url)
-					)
-				],
 				audio_codec = audCodec, #AudioCodec.AAC,
 				container = media_container, #Container.MP4,
 				audio_channels = channels,
-				bitrate = bit
+				bitrate = bit,
+				parts = [
+					PartObject(
+						key = Callback(PlayMP3, url = url)
+					)
+				]
 			)
 		)
 		
@@ -123,7 +123,7 @@ def PlayAAC(url):
 def PlayMP3(url):
 	return PlayAudio(url)
 	
-@route(PREFIX + '/PlayAudio')
+#@route(PREFIX + '/PlayAudio')
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
