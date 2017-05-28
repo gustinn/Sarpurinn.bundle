@@ -79,21 +79,35 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		title = title,
 		thumb = thumb,
 	)
-	
-	track_object.add(
-		MediaObject(
-			parts = [
-				PartObject(
-					key = Callback(PlayAudio, url = url)
-				)
-			],
-			audio_codec = audCodec, #AudioCodec.AAC,
-			container = media_container, #Container.MP4,
-			audio_channels = channels,
-			bitrate = bit
+	if (media_container == "mp4"):
+		track_object.add(
+			MediaObject(
+				parts = [
+					PartObject(
+						key = Callback(PlayAAC, url = url)
+					)
+				],
+				audio_codec = audCodec, #AudioCodec.AAC,
+				container = media_container, #Container.MP4,
+				audio_channels = channels,
+				bitrate = bit
+			)
 		)
-	)
-	
+	else:
+		track_object.add(
+			MediaObject(
+				parts = [
+					PartObject(
+						key = Callback(PlayAudio, url = url)
+					)
+				],
+				audio_codec = audCodec, #AudioCodec.AAC,
+				container = media_container, #Container.MP4,
+				audio_channels = channels,
+				bitrate = bit
+			)
+		)
+		
 	
 	if include_container:
 		return ObjectContainer(objects = [track_object])
@@ -109,7 +123,7 @@ def PlayAAC(url):
 def PlayMP3(url):
 	return PlayAudio(url)
 	
-@route(PREFIX + '/PlayAudio.mp3')
+@route(PREFIX + '/PlayAudio')
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
@@ -152,7 +166,7 @@ def LiveMenu():
 		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = Container.MP4,
+		media_container = "mp4", #Container.MP4,
 		channels = 2,
 		#bit = 128,
 		include_container=False
