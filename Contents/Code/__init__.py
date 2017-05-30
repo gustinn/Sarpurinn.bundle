@@ -137,7 +137,7 @@ def PlayVideoLive(url):
 def LiveMenu():
 	oc = ObjectContainer()
 	oc.add(CreateLiveObject(
-		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream4.m3u8",
+		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream5.m3u8",
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
 		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
@@ -161,20 +161,31 @@ def LiveMenu():
 		)
 	)
 	oc.add(CreateLiveRadioObject(
-		url = "http://stream-eu1.radioparadise.com:80/aac-128",
-		#url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live/stream1.m3u8",
+		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras1/_definst_/live/stream1.m3u8",
 		title = "Rás 1",
 		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = "mp4", #Container.MP4,
+		media_container = Container.mpegts,
 		channels = 2,
 		#bit = 128,
 		include_container=False
 		)
 	)
 	oc.add(CreateLiveRadioObject(
-		url = "http://wms-1.visir.is/radio/orbBylgjan/playlist.m3u8",
+		url = "http://sip-live.hds.adaptive.level3.net/hls-live/ruv-ras2/_definst_/live/stream1.m3u8",
+		title = "Rás 2",
+		#summary = "Bein útsending Rás 1",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.AAC,
+		media_container = Container.mpegts,
+		channels = 2,
+		#bit = 128,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://icecast.365net.is:8000/orbbylgjan.aac",
 		title = "Bylgjan",
 		#summary = "Bein útsending á Bylgjunni",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
@@ -186,9 +197,57 @@ def LiveMenu():
 		)
 	)
 	oc.add(CreateLiveRadioObject(
+		url = "http://icecast.365net.is:8000/orbFm957.aac",
+		title = "FM957",
+		#summary = "Bein útsending á ",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
+		channels = 2,
+		#bit = 112,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
 		url = "http://stream.radio.is:443/kiss",
 		title = "KissFM",
 		#summary = "Bein útsending á KissFM",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
+		channels = 2,
+		#bit = 112,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://icecast.365net.is:8000/orbFMX.aac",
+		title = "FMX",
+		#summary = "Bein útsending á ",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
+		channels = 2,
+		#bit = 112,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://icecast.365net.is:8000/orbLettBylgjan.aac",
+		title = "Létt Bylgjan",
+		#summary = "Bein útsending á ",
+		thumb = R(ICON), #Callback(Thumb, url=thumb),
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
+		channels = 2,
+		#bit = 112,
+		include_container=False
+		)
+	)
+	oc.add(CreateLiveRadioObject(
+		url = "http://icecast.365net.is:8000/orbLettBylgjan.aac",
+		title = "Gull Bylgjan",
+		#summary = "",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.MP3,
 		media_container = Container.MP3,
