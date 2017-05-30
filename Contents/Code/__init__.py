@@ -166,7 +166,7 @@ def LiveMenu():
 		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = Container.mpegts,
+		media_container = Container.MPEGTS,
 		channels = 2,
 		#bit = 128,
 		include_container=False
@@ -178,7 +178,7 @@ def LiveMenu():
 		#summary = "Bein útsending Rás 1",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = Container.mpegts,
+		media_container = Container.MPEGTS,
 		channels = 2,
 		#bit = 128,
 		include_container=False
