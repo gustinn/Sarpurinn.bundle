@@ -50,12 +50,13 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 	)
 	if "live.hls.adaptive.level3.net/ruv/" in url:
 		stream_resolutions = [
-			"SD",
+			"240",
+			"360",
 			"480",
 			"720",
 			"1080"
 		]
-		i = 2;
+		i = 1;
 		for res in stream_resolutions:
 			
 			vid_url = url + "stream"+str(i)+".m3u8"
