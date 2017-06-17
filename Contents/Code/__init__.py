@@ -33,7 +33,7 @@ def Start(): # Initialize the plug-in
 @handler(PREFIX, TITLE)
 def MainMenu():
   oc = ObjectContainer(no_cache = True)
-  oc.add(DirectoryObject(key=Callback(LiveMenu), title="Live", thumb = R(ICON)))
+  oc.add(DirectoryObject(key=Callback(LiveMenu), title="Bein útsending", thumb = R(ICON)))
   oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn", thumb = R(ICON)))
   
   return oc 
@@ -144,7 +144,7 @@ def LiveMenu():
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
-		vidRes = "720",
+		vidRes = "1080",
 		include_container=False
 		)
 	)
