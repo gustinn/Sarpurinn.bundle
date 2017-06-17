@@ -47,7 +47,36 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		title = title,
 		summary = summary,
 		thumb = thumb,
-		items = [
+	)
+	if "live.hls.adaptive.level3.net/ruv/" in url:
+		stream_resolutions = [
+			"SD",
+			"480",
+			"720",
+			"1080"
+		]
+		i = 2;
+		for res in stream_resolutions:
+			
+			vid_url = url + "stream"+i+".m3u8"
+			i++
+			video_object.add(
+				MediaObject(
+					parts = [
+						PartObject(
+							key = HTTPLiveStreamURL(Callback(PlayVideoLive, url = vid_url))
+						)
+					],
+					video_codec = vidCodec, #VideoCodec.H264,
+					audio_codec = audCodec, #AudioCodec.AAC,
+					video_resolution = res,
+					audio_channels = 2,
+					container = media_container, #Container.MP4,
+					optimized_for_streaming = True
+				)
+			)
+	else:
+		video_object.add(
 			MediaObject(
 				parts = [
 					PartObject(
@@ -61,9 +90,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 				container = media_container, #Container.MP4,
 				optimized_for_streaming = True
 			)
-		]
-	)
-	
+		)
 	if include_container:
 		return ObjectContainer(objects = [video_object])
 	else:
@@ -99,13 +126,6 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		return track_object
 
 
-# @route(PREFIX + '/PlayAAC.aac')
-# def PlayAAC(url):
-	# return PlayAudio(url)
-
-# @route(PREFIX + '/PlayMP3.mp3')
-# def PlayMP3(url):
-	# return PlayAudio(url)
 	
 @route(PREFIX + '/PlayAudio')
 def PlayAudio(url):
@@ -121,26 +141,26 @@ def PlayVideoLive(url):
 def LiveMenu():
 	oc = ObjectContainer()
 	oc.add(CreateLiveObject(
-		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/stream5.m3u8",
+		url = "http://ruvruv-live.hls.adaptive.level3.net/ruv/ruv/index/", #stream5.m3u8",
 		title = "RÚV",
 		summary = "Bein útsending RÚV",
 		thumb = R("ruv.png"), #Callback(Thumb, url=thumb),
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
-		vidRes = "1080",
+		#vidRes = "1080",
 		include_container=False
 		)
 	)
 	oc.add(CreateLiveObject(
-		url = "http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/stream5.m3u8",
+		url = "http://ruvruv2-live.hls.adaptive.level3.net/ruv/ruv2/index/", #stream5.m3u8",
 		title = "RÚV 2",
 		summary = "Bein útsending RÚV 2",
 		thumb = R("ruv2.png"), #Callback(Thumb, url=thumb),
 		vidCodec = VideoCodec.H264,
 		audCodec = AudioCodec.AAC,
 		media_container = Container.MP4,
-		vidRes = "1080",
+		#vidRes = "1080",
 		include_container=False
 		)
 	)
