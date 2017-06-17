@@ -197,8 +197,8 @@ def LiveMenu():
 		title = "KissFM",
 		#summary = "Bein útsending á KissFM",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.AAC,
-		media_container = Container.MP4,
+		audCodec = AudioCodec.MP3,
+		media_container = Container.MP3,
 		channels = 2,
 		#bit = 112,
 		include_container=False
