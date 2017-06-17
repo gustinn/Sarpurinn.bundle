@@ -33,7 +33,7 @@ def Start(): # Initialize the plug-in
 @handler(PREFIX, TITLE)
 def MainMenu():
   oc = ObjectContainer(no_cache = True)
-  oc.add(DirectoryObject(key=Callback(LiveMenu), title="Bein útsending", thumb = R(ICON)))
+  oc.add(DirectoryObject(key=Callback(LiveMenu), title=unicode("Bein útsending"), thumb = R(ICON)))
   oc.add(DirectoryObject(key=Callback(SarpMenu), title="Sarpurinn", thumb = R(ICON)))
   
   return oc 
@@ -79,51 +79,35 @@ def CreateLiveRadioObject(url, title, thumb = None, audCodec = None, media_conta
 		title = title,
 		thumb = thumb,
 	)
-	if (media_container == "mp4"):
-		track_object.add(
-			MediaObject(
-				audio_codec = AudioCodec.AAC,
-				container = Container.MP4,
-				audio_channels = channels,
-				bitrate = bit,
-				parts = [
-					PartObject(
-						key = Callback(PlayAAC, url = url)
-					)
-				]
-			)
+	track_object.add(
+		MediaObject(
+			audio_codec = audCodec,
+			container = media_container,
+			audio_channels = channels,
+			bitrate = bit,
+			parts = [
+				PartObject(
+					key = Callback(PlayAudio, url = url)
+				)
+			]
 		)
-	else:
-		track_object.add(
-			MediaObject(
-				audio_codec = audCodec, #AudioCodec.AAC,
-				container = media_container, #Container.MP4,
-				audio_channels = channels,
-				bitrate = bit,
-				parts = [
-					PartObject(
-						key = Callback(PlayMP3, url = url)
-					)
-				]
-			)
-		)
+	)
 		
-	
 	if include_container:
 		return ObjectContainer(objects = [track_object])
 	else:
 		return track_object
 
 
-@route(PREFIX + '/PlayAAC.aac')
-def PlayAAC(url):
-	return PlayAudio(url)
+# @route(PREFIX + '/PlayAAC.aac')
+# def PlayAAC(url):
+	# return PlayAudio(url)
 
-@route(PREFIX + '/PlayMP3.mp3')
-def PlayMP3(url):
-	return PlayAudio(url)
+# @route(PREFIX + '/PlayMP3.mp3')
+# def PlayMP3(url):
+	# return PlayAudio(url)
 	
-#@route(PREFIX + '/PlayAudio')
+@route(PREFIX + '/PlayAudio')
 def PlayAudio(url):
 	Log(url)
 	return Redirect(url)
@@ -190,7 +174,7 @@ def LiveMenu():
 		#summary = "Bein útsending á Bylgjunni",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
 		audCodec = AudioCodec.AAC,
-		media_container = "mp4",#Container.MP4,
+		media_container = Container.MP4,
 		channels = 2,
 		bit = 128,
 		include_container=False
@@ -201,8 +185,8 @@ def LiveMenu():
 		title = "FM957",
 		#summary = "Bein útsending á ",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.MP3,
-		media_container = Container.MP3,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
 		#bit = 112,
 		include_container=False
@@ -213,8 +197,8 @@ def LiveMenu():
 		title = "KissFM",
 		#summary = "Bein útsending á KissFM",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.MP3,
-		media_container = Container.MP3,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
 		#bit = 112,
 		include_container=False
@@ -225,8 +209,8 @@ def LiveMenu():
 		title = "FMX",
 		#summary = "Bein útsending á ",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.MP3,
-		media_container = Container.MP3,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
 		#bit = 112,
 		include_container=False
@@ -237,8 +221,8 @@ def LiveMenu():
 		title = "Létt Bylgjan",
 		#summary = "Bein útsending á ",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.MP3,
-		media_container = Container.MP3,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
 		#bit = 112,
 		include_container=False
@@ -249,8 +233,8 @@ def LiveMenu():
 		title = "Gull Bylgjan",
 		#summary = "",
 		thumb = R(ICON), #Callback(Thumb, url=thumb),
-		audCodec = AudioCodec.MP3,
-		media_container = Container.MP3,
+		audCodec = AudioCodec.AAC,
+		media_container = Container.MP4,
 		channels = 2,
 		#bit = 112,
 		include_container=False
