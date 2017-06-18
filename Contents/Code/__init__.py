@@ -60,7 +60,7 @@ def CreateLiveObject(url, title, summary, thumb = None, vidCodec = None, audCode
 		for res in stream_resolutions:
 			
 			vid_url = url + "stream"+str(i)+".m3u8"
-			i -= 1
+			i = i-1
 			video_object.add(
 				MediaObject(
 					parts = [
